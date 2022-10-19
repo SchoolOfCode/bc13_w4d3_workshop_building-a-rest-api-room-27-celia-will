@@ -34,18 +34,30 @@ app.get("/api/quotes", async function (req, res) {
   }
 });
 
-//create post request handler to api/quotes
-// use addQuote using body of request as parameter
-//req.body.quoteText
-// respond with new quote object
-
 app.post("/api/quotes", async function (req, res){
   const newQuoteText = req.body.quoteText
-  console.log(newQuoteText);
   const newQuote = await addQuote(newQuoteText);
   res.json(newQuote);
 }
 )
+
+//create the patch route handler - editQuote
+//assign editId = req.params.id 
+//assign newQuoteText = req.body.quoteText
+// use these as parameter for editQuote
+// respond with edited quotes: 
+app.patch("/api/quotes:id", async function (req, res){
+  const editId = req.params.id;
+  console.log(req.params.id);
+  const newQuoteText = req.body.quoteText;
+  console.log(newQuoteText);
+  const editedQuote = await editQuote(editId, newQuoteText);
+  res.json(editedQuote);
+} 
+)
+
+
+
 
 app.listen(port, function () {
   console.log(`Server listening on port ${port}`);
