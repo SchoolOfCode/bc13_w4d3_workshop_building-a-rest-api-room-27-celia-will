@@ -7,7 +7,7 @@ const {
     getRandomQuote,
     editQuote,
     deleteQuote,
-  } = require("../models/quote.js");
+  } = require("../models/quotes.js");
 
 router.get("/", function (req, res) {
     res.send("Welcome to cwissy.rest");
