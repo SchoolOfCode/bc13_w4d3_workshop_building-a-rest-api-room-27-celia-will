@@ -2,12 +2,20 @@ console.log("this works")
 
 let h2 = document.querySelector('#h2')
  async function fetchQuote() {
-    let response = await fetch ("/api/quotes")
+    let response = await fetch ("/api/quotes?type=random")
     let data = await response.json()
-    h2.textContent = data[2].quoteText
+    h2.textContent = data.quoteText
     console.log(data)
 
  }
+
+ async function deleteQuote() {
+   let response = await fetch ("/api/quotes?type=random")
+   let data = await response.json()
+   h2.textContent = data.quoteText
+   console.log(data)
+
+}
 
 
 
