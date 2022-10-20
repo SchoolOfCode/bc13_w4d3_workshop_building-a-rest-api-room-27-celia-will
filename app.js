@@ -35,8 +35,7 @@ app.get("/api/quotes", async function (req, res) {
 });
 
 app.post("/api/quotes", async function (req, res){
-  const newQuoteText = req.body.quoteText
-  const newQuote = await addQuote(newQuoteText);
+  const newQuote = await addQuote(req.body.quoteText);
   res.json(newQuote);
 }
 )
@@ -46,7 +45,7 @@ app.post("/api/quotes", async function (req, res){
 //assign newQuoteText = req.body.quoteText
 // use these as parameter for editQuote
 // respond with edited quotes: 
-app.patch("/api/quotes:id", async function (req, res){
+app.patch("/api/quotes/:id", async function (req, res){
   const editId = req.params.id;
   console.log(req.params.id);
   const newQuoteText = req.body.quoteText;
@@ -54,6 +53,12 @@ app.patch("/api/quotes:id", async function (req, res){
   const editedQuote = await editQuote(editId, newQuoteText);
   res.json(editedQuote);
 } 
+)
+
+app.delete("/api/quotes/:id", (req, res) => {
+  deleteQuote(req.params.id);
+  res.send(`Quote ${req.params.id} has been deleted`);
+}
 )
 
 
